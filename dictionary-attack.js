@@ -28,9 +28,39 @@ function checkPassword() {
       alert("that is a weak password! it's an English word.");
       return; //stop this function as soon as I find this match
     }
+
+    //warn them if that word from the list, when I "leetify" it,
+    //matches their input
+    //EX: wordsList[index] is 'hello', leetify(wordsList[index]) is 'h3ll0'
+    if (leetify(wordsList[index]) == input) {
+      alert(input + " is a weak password! it's too close to " + wordsList[index]);
+      return; //stop this function as soon as I find a leetified match
+    }
   }
 
   //after the for loop finishes, if it wasn't an English word,
   //tell them their password is safe
   alert("Your password is just fine :D ");
+}
+
+//test function - change a words vowels into numbers
+function leetify(word) {
+  //get the word in all lowercase letters
+  var modifiedWord = word.toLowerCase();
+
+  //replace all As with the number 4
+  modifiedWord = modifiedWord.replace(/a/g, '4');
+
+  //replace all Es with the number 3
+  modifiedWord = modifiedWord.replace(/e/g, '3');
+
+  //replace all Is with the number 1
+  modifiedWord = modifiedWord.replace(/i/g, '1');
+
+  //replace all Os with the number 0
+  modifiedWord = modifiedWord.replace(/o/g, '0');
+
+  //send it back
+  //console.log(modifiedWord);
+  return modifiedWord;
 }
